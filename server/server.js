@@ -15,6 +15,8 @@ app.use(express.json({ extended: false }));
 app.use('/api/locations', require('./routes/location'));
 app.use('/api/fridges', require('./routes/fridge'));
 app.use('/api/temp', require('./routes/tempLog'));
+app.use('/api/user', require('./routes/user'));
+app.use('/api/auth', require('./routes/auth'));
 
 app.get('/', (req, res) =>
   res.json({ msg: 'Welcome to the Temperature Log API....'})

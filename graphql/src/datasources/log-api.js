@@ -45,7 +45,11 @@ class LogAPI extends RESTDataSource {
   }
 
   addFridgeTempLog(data) {
-    return this.post(`temp`, data)
+    return this.post('temp', data)
+  }
+
+  addUser(data) {
+    return this.post('user', data);
   }
 }
 

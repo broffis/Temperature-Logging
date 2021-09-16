@@ -12,7 +12,15 @@ const server = new ApolloServer({
     return {
       logAPI: new LogAPI(),
     }
-  }
+  },
+  context: ({ req }) => {
+    // console.log('req', req.headers)
+
+    return {
+      authToken: req.headers['x-auth-token']
+    }    
+  },
+  
 });
 
 server.listen().then(() => {

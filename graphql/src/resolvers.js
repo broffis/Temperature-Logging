@@ -6,7 +6,7 @@ const resolvers = {
     },
 
     // returns an array of fridges
-    fridges: (_, __, { dataSources }) => {
+    fridges: (_, __, { dataSources, authToken }) => {
       return dataSources.logAPI.getAllFridges();
     },
 
@@ -80,11 +80,11 @@ const resolvers = {
       }
     },
 
-    addFridgeTempLog: async (_, { fridgeId, temperature, logTime }, { dataSources}) => {
+    // Log a fridge temperature
+    addFridgeTempLog: async (_, { fridgeId, temperature, logTime }, { dataSources }) => {
       try {
         await dataSources.logAPI.addFridgeTempLog({ fridgeId, temperature, logTime});
         const fridge = await dataSources.logAPI.getFridgeById(fridgeId);
-        console.log('fridge', fridge)
         return {
           code: 200,
           success: true,
@@ -99,8 +99,28 @@ const resolvers = {
           fridge: null,
         };
       }
+    },
+
+    // Add a user
+    addUser: async (_, { name, email, password, access }, { dataSources }) => {
+      try {
+        const { token } = await dataSources.logAPI.addUser({ name, email, password, access });
+        return {
+          code: 200,
+          success: true,
+          message: `Successfully created ${name}`,
+          token
+        }
+      } catch (err) {
+        return {
+          code: err.extensions.response.status,
+          success: false,
+          message: err.extensions.response.body,
+          token: null
+        }
+      }
     }
-  }
+  },
 }
 
 module.exports = resolvers

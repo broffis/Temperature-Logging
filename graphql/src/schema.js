@@ -1,9 +1,4 @@
 const { gql } = require('apollo-server');
-const {
-  GraphQLDate,
-  GraphQLTime,
-  GraphQLDateTime
-} = require('graphql-iso-date');
 
 const typeDefs = gql`
   type Query {
@@ -16,7 +11,7 @@ const typeDefs = gql`
     "Fetch fridge by id"
     fridge(id: ID!): Fridge!
     "Fetch all logs"
-    logs: [Log]
+    logs: [Log],
   }
 
   "A location is a place a fridge can be tied to"
@@ -55,6 +50,8 @@ const typeDefs = gql`
     addFridge(name: String!, locationId: ID!): AddFridgeResponse!
     "Log Fridge Temp"
     addFridgeTempLog(fridgeId: ID!, temperature: Int!, logTime: String): AddFridgeTempLogResponse!
+    "Add user to app"
+    addUser(name: String!, email: String!, password: String!, access: Int): AddUserResponse
   }
 
   type AddLocationResponse {
@@ -87,6 +84,16 @@ const typeDefs = gql`
     "Human-readable message for the UI"
     message: String!
     fridge: Fridge
+  }
+
+  type AddUserResponse {
+    "Similar to HTTP status code, represents the status of the mutation"
+    code: Int!
+    "Indicates whether the mutation was successful"
+    success: Boolean!
+    "Human-readable message for the UI"
+    message: String!
+    token: String
   }
 `;
 
