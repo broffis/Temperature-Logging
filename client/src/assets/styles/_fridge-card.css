@@ -1,0 +1,41 @@
+.fridge-card {
+  border: 2px solid black;
+  border-radius: 4px;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  margin: 12px;
+  max-width: 250px;
+  padding: 4px;
+  text-decoration: none;
+}
+
+.fridge-card__header {
+  align-items: baseline;
+  display: flex;
+}
+
+.fridge-card__info {
+  align-items: baseline;
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  padding: 12px 0;
+}
+
+.fridge-card__name {
+  font-size: 1.5em;
+  font-weight: bold;
+  padding-right: 12px;
+}
+
+.fridge-card__no-temp {
+  color: red;
+  padding: 12px 0;
+}
+
+.fridge-card__location {}
+
+.fridge-card__temp {
+  font-weight: bold;
+  font-size: 1.15em;
+}
