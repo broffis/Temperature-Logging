@@ -26,6 +26,8 @@ const typeDefs = gql`
     _id: ID!
     "The name of the fridge"
     name: String!
+    "The type of fridge"
+    type: String!
     "ID for the location of the fridge. References id in Location"
     locationId: ID!
     "location name of the fridge"

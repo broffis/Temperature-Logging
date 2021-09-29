@@ -11,6 +11,10 @@ router.post('/', [
   check('name', 'Please add name')
     .not()
     .isEmpty(),
+  check('type', 'Please select a type')
+    .not()
+    .isEmpty()
+    .isIn(['fridge', 'freezer', 'reach-in', 'bar cooler']),
   check('locationId', 'Please select a location')
     .not()
     .isEmpty()
